@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pharaohs Expo case study by Abdelrahman Gharby. A real estate campaign built around contradiction, curiosity and a different way to enter the market." />
+  <title>Pharaohs Expo | Case Study — Abdelrahman Gharby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#f7f5ef;
+      --paper-2:#ece7dc;
+      --ink:#171714;
+      --muted:#747168;
+      --line:rgba(23,23,20,.14);
+      --accent:#66765c;
+      --signal:#c87545;
+      --dark:#191a17;
+      --dark-2:#23241f;
+      --white:#f7f7f2;
+      --serif:'Playfair Display',serif;
+      --sans:'Inter',sans-serif;
+      --mono:'DM Mono',monospace;
+      --container:1280px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    ::selection{background:var(--ink);color:var(--paper)}
+    .grain{position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+    .shell{width:min(calc(100% - 64px),var(--container));margin:auto}
+    .eyebrow{font:500 .7rem/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 28px;display:flex;justify-content:space-between;align-items:center;color:var(--white);transition:.25s ease;border-bottom:1px solid transparent}
+    .nav.scrolled{background:rgba(25,26,23,.88);backdrop-filter:blur(16px);border-color:rgba(247,247,242,.12)}
+    .brand{font-weight:600;letter-spacing:-.04em}
+    .nav-right{display:flex;align-items:center;gap:20px}
+    .nav-link{font-size:.78rem;color:rgba(247,247,242,.72);transition:color .2s ease}
+    .nav-link:hover{color:var(--white)}
+    .nav-cta{border:1px solid rgba(247,247,242,.24);padding:10px 14px;border-radius:999px;font-size:.75rem;font-weight:600}
+    .nav-cta:hover{background:var(--white);color:var(--ink)}
+
+    /* HERO */
+    .hero{background:var(--dark);color:var(--white);min-height:100svh;padding:145px 0 70px;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:auto -10% -22% 42%;height:70%;background:radial-gradient(circle,rgba(200,117,69,.18),transparent 62%);filter:blur(24px)}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:80px;align-items:end}
+    .hero-kicker{display:flex;align-items:center;gap:12px;margin-bottom:28px;color:#a6a79f}
+    .hero-kicker::before{content:"";width:42px;height:1px;background:var(--signal)}
+    h1{font-size:clamp(4rem,9vw,9.5rem);line-height:.83;letter-spacing:-.08em;font-weight:600;max-width:1000px}
+    h1 em{font-family:var(--serif);font-weight:500;color:#c8d0c0}
+    .hero-deck{margin-top:36px;max-width:760px;color:#bdbeb7;font-size:1.05rem;line-height:1.78}
+    .hero-meta{border-top:1px solid rgba(247,247,242,.15);padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .hero-meta div{display:grid;gap:5px}
+    .hero-meta strong{font-size:.9rem;font-weight:600}
+    .hero-meta span{font:500 .62rem/1.4 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:#898a83}
+    .hero-scroll{position:absolute;bottom:34px;right:28px;font:500 .62rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#7f8078;writing-mode:vertical-rl;transform:rotate(180deg)}
+
+    /* PROJECT BAR */
+    .project-bar{background:var(--paper-2);border-bottom:1px solid var(--line);padding:18px 0}
+    .project-bar-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .project-id{font:500 .62rem var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .project-nav{display:flex;gap:22px;flex-wrap:wrap;font-size:.75rem}
+    .project-nav a{color:#5e5b54}
+    .project-nav a:hover{color:var(--ink)}
+
+    /* SECTION BASE */
+    section.story{padding:115px 0}
+    .section-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:90px;align-items:start}
+    .section-label{position:sticky;top:105px}
+    .section-label .number{font:500 .67rem var(--mono);letter-spacing:.15em;color:var(--signal);margin-bottom:16px}
+    .section-label h2{font-size:clamp(2.6rem,4.8vw,5.6rem);line-height:.93;letter-spacing:-.07em;max-width:470px}
+    .section-label h2 em{font-family:var(--serif);font-weight:500}
+    .section-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:90px;align-items:end}
+    .section-copy{max-width:720px}
+    .section-copy .lead{font-size:clamp(1.4rem,2.2vw,2rem);line-height:1.35;letter-spacing:-.03em}
+    .section-copy p{margin-top:24px;color:#646159;font-size:1rem;line-height:1.8}
+    .mini-rule{height:1px;background:var(--line);margin:38px 0}
+
+    /* CONTRADICTION */
+    .contradiction{background:var(--dark);color:var(--white)}
+    .contradiction .section-label h2{color:var(--white)}
+    .contradiction .section-copy .lead{color:#f0f0e9}
+    .contradiction .section-copy p{color:#b5b6ae}
+    .quote-lockup{margin-top:44px;padding:34px 0;border-top:1px solid rgba(247,247,242,.15);border-bottom:1px solid rgba(247,247,242,.15)}
+    .quote-lockup .tiny{font:500 .62rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#8d8f86}
+    .quote-lockup .quote{font-size:clamp(2.8rem,6vw,7rem);font-weight:600;letter-spacing:-.08em;line-height:.88;margin-top:16px;color:var(--white)}
+    .quote-lockup .quote span{color:#d68b5e}
+    .psychology{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(247,247,242,.12)}
+    .psy{background:var(--dark-2);padding:22px 20px;min-height:170px}
+    .psy b{display:block;font-size:.88rem;margin-bottom:10px}
+    .psy span{font-size:.82rem;line-height:1.6;color:#9fa097}
+
+    /* ARROW TIMELINE */
+    .timeline-wrap{margin-top:22px}
+    .timeline{position:relative;padding-left:74px}
+    .timeline::before{content:"";position:absolute;left:22px;top:0;bottom:64px;width:1px;background:var(--line)}
+    .timeline::after{content:"";position:absolute;left:16px;bottom:18px;width:13px;height:13px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:rotate(45deg)}
+    .step{position:relative;padding:0 0 78px}
+    .step:last-child{padding-bottom:10px}
+    .step-dot{position:absolute;left:-60px;top:5px;width:45px;height:45px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;background:var(--paper);font:500 .64rem var(--mono)}
+    .step:nth-child(2) .step-dot{border-color:var(--accent)}
+    .step:nth-child(3) .step-dot{border-color:var(--signal)}
+    .step:nth-child(4) .step-dot{background:var(--ink);color:var(--white)}
+    .step-kicker{font:500 .64rem var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .step h3{font-size:clamp(1.7rem,3vw,3rem);line-height:1;letter-spacing:-.05em;margin-top:9px}
+    .step p{margin-top:14px;color:#66635b;max-width:680px;line-height:1.75}
+    .step .micro{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;font:500 .62rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+
+    /* MEDIA WALL */
+    .media-section{background:var(--paper-2)}
+    .media-wall{margin-top:48px;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:#dad4c8}
+    .media-screen{position:relative;aspect-ratio:16/8.7;background:linear-gradient(145deg,#272824,#10110f 65%);display:grid;place-items:center;overflow:hidden}
+    .media-screen::before{content:"";position:absolute;width:44%;height:72%;right:10%;top:10%;background:radial-gradient(circle,rgba(200,117,69,.28),transparent 67%);filter:blur(14px)}
+    .media-screen .placeholder{text-align:center;position:relative;z-index:1;padding:30px;max-width:520px}
+    .play{width:68px;height:68px;border:1px solid rgba(247,247,242,.36);border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;color:var(--white);font-size:1.2rem}
+    .placeholder h3{font-size:clamp(1.5rem,3vw,2.6rem);line-height:1.05;letter-spacing:-.05em;color:var(--white)}
+    .placeholder p{margin-top:11px;color:#a4a59d;font-size:.82rem;line-height:1.6}
+    .media-caption{padding:18px 20px;border-top:1px solid rgba(23,23,20,.12);display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .media-caption strong{font-size:.82rem}
+    .media-caption span{font:500 .6rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+    .media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    .media-card{background:#d7d1c4;border:1px solid rgba(23,23,20,.1);border-radius:18px;overflow:hidden}
+    .media-card .thumb{aspect-ratio:16/10;background:linear-gradient(140deg,#2c2d28,#151612);position:relative;display:grid;place-items:center}
+    .media-card .thumb::after{content:"VIDEO SLOT";font:500 .6rem var(--mono);letter-spacing:.13em;color:rgba(247,247,242,.5)}
+    .media-card .meta{padding:13px 14px}
+    .media-card b{font-size:.78rem;display:block}
+    .media-card span{font:500 .6rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+
+    /* REVEAL */
+    .reveal-section{background:var(--dark);color:var(--white)}
+    .reveal-section .section-label h2{color:var(--white)}
+    .reveal-section .section-copy .lead{color:var(--white)}
+    .reveal-section .section-copy p{color:#b5b6ae}
+    .reveal-card{margin-top:40px;padding:42px;border:1px solid rgba(247,247,242,.16);border-radius:28px;background:var(--dark-2)}
+    .reveal-top{display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .reveal-top .eyebrow{color:#8d8e87}
+    .response-line{font-size:clamp(2.4rem,5.8vw,6.5rem);line-height:.86;letter-spacing:-.08em;margin-top:42px;max-width:1000px}
+    .response-line em{font-family:var(--serif);font-weight:500;color:#c8d0c0}
+    .reveal-points{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:48px;padding-top:24px;border-top:1px solid rgba(247,247,242,.12)}
+    .reveal-point{padding-right:16px}
+    .reveal-point b{font-size:.83rem;display:block;margin-bottom:7px}
+    .reveal-point span{font-size:.78rem;color:#9fa098;line-height:1.65}
+
+    /* OUTCOME */
+    .outcome{padding-bottom:120px}
+    .outcome-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:52px}
+    .outcome-stat,.outcome-context{border-radius:28px;padding:34px;min-height:300px}
+    .outcome-stat{background:var(--ink);color:var(--white);display:flex;flex-direction:column;justify-content:space-between}
+    .outcome-stat strong{font-size:clamp(4rem,8vw,8rem);letter-spacing:-.09em;line-height:.8}
+    .outcome-stat span{font:500 .64rem var(--mono);text-transform:uppercase;letter-spacing:.12em;color:#9fa098;max-width:330px;line-height:1.5}
+    .outcome-context{background:var(--paper-2);display:flex;flex-direction:column;justify-content:space-between}
+    .outcome-context h3{font-size:clamp(1.8rem,3.6vw,3.5rem);line-height:.95;letter-spacing:-.06em}
+    .outcome-context p{font-size:.9rem;line-height:1.7;color:#65625a;max-width:520px}
+
+    /* ROLE */
+    .role{background:var(--paper-2)}
+    .role-list{margin-top:46px;border-top:1px solid rgba(23,23,20,.18)}
+    .role-row{display:grid;grid-template-columns:80px 1fr 1fr;gap:24px;padding:22px 0;border-bottom:1px solid rgba(23,23,20,.14);align-items:start}
+    .role-row .num{font:500 .65rem var(--mono);color:var(--signal)}
+    .role-row strong{font-size:.9rem}
+    .role-row span{font-size:.82rem;line-height:1.65;color:var(--muted);max-width:460px}
+
+    /* CLOSE */
+    .close{background:var(--ink);color:var(--white);padding:120px 0 40px}
+    .close-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:end}
+    .close h2{font-size:clamp(3.2rem,7vw,7.4rem);line-height:.86;letter-spacing:-.08em}
+    .close h2 em{font-family:var(--serif);font-weight:500;color:#c8d0c0}
+    .close-copy{color:#b7b8b0;font-size:.98rem;line-height:1.75;max-width:520px}
+    .close-link{display:inline-flex;margin-top:24px;padding-bottom:8px;border-bottom:1px solid rgba(247,247,242,.3);font-weight:600}
+    .footer{margin-top:94px;border-top:1px solid rgba(247,247,242,.12);padding-top:18px;display:flex;justify-content:space-between;gap:20px;color:#85867f;font:500 .62rem var(--mono);text-transform:uppercase;letter-spacing:.1em}
+
+    /* RESPONSIVE */
+    @media(max-width:980px){
+      .hero-grid,.section-grid,.close-grid,.outcome-grid,.section-head{grid-template-columns:1fr;gap:46px}
+      .hero{padding-top:120px}
+      .hero-meta{max-width:540px}
+      .section-label{position:static}
+      .media-grid{grid-template-columns:1fr}
+      .psychology{grid-template-columns:1fr}
+      .role-row{grid-template-columns:50px 1fr}
+      .role-row span{grid-column:2}
+    }
+    @media(max-width:680px){
+      .shell{width:min(calc(100% - 36px),var(--container))}
+      .nav{padding:15px 18px}
+      .nav-right{gap:10px}
+      .nav-link{display:none}
+      .nav-cta{padding:8px 11px}
+      .hero{padding:112px 0 60px;min-height:auto}
+      h1{font-size:clamp(3.3rem,16vw,6rem)}
+      .hero-scroll{display:none}
+      .project-bar-inner{display:block}
+      .project-nav{margin-top:12px;gap:15px}
+      section.story{padding:84px 0}
+      .quote-lockup .quote{font-size:clamp(3.1rem,17vw,5.6rem)}
+      .timeline{padding-left:54px}
+      .timeline::before{left:16px}
+      .timeline::after{left:10px}
+      .step-dot{left:-46px;width:36px;height:36px}
+      .reveal-card{padding:24px}
+      .response-line{font-size:clamp(2.5rem,14vw,5.1rem)}
+      .reveal-points{grid-template-columns:1fr}
+      .outcome-stat,.outcome-context{min-height:260px;padding:26px}
+      .role-row{gap:14px}
+      .footer{display:block}.footer span+span{display:block;margin-top:9px}
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="index.html">AG.</a>
+    <nav class="nav-right" aria-label="Case study navigation">
+      <a class="nav-link" href="#story">Story</a>
+      <a class="nav-link" href="#execution">Execution</a>
+      <a class="nav-link" href="#outcome">Outcome</a>
+      <a class="nav-cta" href="index.html">Back to portfolio ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="shell">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-kicker eyebrow">Case Study 01 · Pharaohs Development</div>
+            <h1>When a real estate company says <em>don't buy real estate.</em></h1>
+            <p class="hero-deck">In the loudest part of the real estate season, the category was asking people to buy. Pharaohs opened with the one sentence a real estate brand normally would not say: “ماتشتريش عقارات دلوقتي”. The wider Expo operation later reported 200M+ EGP in sales.</p>
+          </div>
+          <div class="hero-meta">
+            <div><strong>Campaign</strong><span>Pharaohs Expo</span></div>
+            <div><strong>Market</strong><span>Real Estate · Aswan</span></div>
+            <div><strong>Focus</strong><span>Concept · Creative · Activation</span></div>
+            <div><strong>Reported result</strong><span>200M+ EGP Expo sales operation</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll">Scroll to unpack the idea</div>
+    </section>
+
+    <div class="project-bar">
+      <div class="shell project-bar-inner">
+        <div class="project-id">Pharaohs Expo / The contradiction campaign</div>
+        <nav class="project-nav">
+          <a href="#story">01 Story</a>
+          <a href="#concept">02 Concept</a>
+          <a href="#execution">03 Execution</a>
+          <a href="#reveal">04 Reveal</a>
+          <a href="#outcome">05 Outcome</a>
+        </nav>
+      </div>
+    </div>
+
+    <section class="story" id="story">
+      <div class="shell section-grid">
+        <div class="section-label">
+          <div class="number">01 / STORY</div>
+          <h2>The market was loud. So we chose to say the <em>opposite.</em></h2>
+        </div>
+        <div class="section-copy">
+          <div class="eyebrow">The situation</div>
+          <p class="lead">At one of the strongest periods of the year for real estate, competitors were launching new projects and their exhibitions were already approaching. The market was full of reasons to buy.</p>
+          <p>Pharaohs chose a different entry point for its Expo. Before talking about six projects, payment plans or offers, the campaign needed one thing first: attention strong enough to make people ask what was going on.</p>
+          <div class="mini-rule"></div>
+          <div class="timeline-wrap" id="concept">
+            <div class="timeline">
+              <article class="step">
+                <div class="step-dot">01</div>
+                <div class="step-kicker">The tension</div>
+                <h3>Everyone was saying “buy.”</h3>
+                <p>So repeating the normal real estate message would make Pharaohs sound like everyone else. The challenge was not simply to announce another exhibition. It was to make the market stop and look.</p>
+                <span class="micro">Crowded category → familiar message</span>
+              </article>
+              <article class="step">
+                <div class="step-dot">02</div>
+                <div class="step-kicker">The concept</div>
+                <h3>Break the category rule.</h3>
+                <p>Use a message that creates a contradiction: a real estate company telling people not to buy real estate. The line is simple, believable in tone and intentionally unfinished without the explanation that comes later.</p>
+                <span class="micro">Contradiction → curiosity</span>
+              </article>
+              <article class="step">
+                <div class="step-dot">03</div>
+                <div class="step-kicker">The trigger</div>
+                <h3>“Wait. Why would they say that?”</h3>
+                <p>The campaign was built to create that second thought. Instead of giving the audience the answer immediately, the first message created a gap that the next content had to close.</p>
+                <span class="micro">Curiosity gap → conversation</span>
+              </article>
+              <article class="step">
+                <div class="step-dot">04</div>
+                <div class="step-kicker">The reveal</div>
+                <h3>Then we explained why.</h3>
+                <p>The response video reframed the first statement and connected it to Pharaohs Expo: one place, multiple projects and a larger opportunity to compare and decide.</p>
+                <span class="micro">Conversation → context → Expo</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story contradiction">
+      <div class="shell section-grid">
+        <div class="section-label">
+          <div class="number">THE HOOK</div>
+          <h2>Say the one thing the category would <em>never expect.</em></h2>
+        </div>
+        <div class="section-copy">
+          <div class="eyebrow">The first move</div>
+          <p class="lead">The campaign did not open with a project. It opened with a sentence that felt wrong coming from a real estate company.</p>
+          <div class="quote-lockup">
+            <div class="tiny">The statement</div>
+            <div class="quote">“ماتشتريش عقارات <span>دلوقتي.</span>”</div>
+          </div>
+          <div class="psychology" aria-label="Campaign logic">
+            <div class="psy"><b>Expectation</b><span>Real estate brand → buy property.</span></div>
+            <div class="psy"><b>Contradiction</b><span>Real estate brand → don't buy property.</span></div>
+            <div class="psy"><b>Question</b><span>“Why would they tell me not to buy?”</span></div>
+          </div>
+          <p>It works as a campaign device because the audience is given the conflict before the explanation. The first post is not the complete story. It is the reason to continue watching.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="story media-section" id="execution">
+      <div class="shell section-grid">
+        <div class="section-label">
+          <div class="number">02 / EXECUTION</div>
+          <h2>One statement. <em>Different faces.</em></h2>
+        </div>
+        <div class="section-copy">
+          <div class="eyebrow">How the statement became a conversation</div>
+          <p class="lead">The same message travelled through the people customers already associate with the company, each delivering it in their own natural way.</p>
+          <p>The chairman, the CEO and members of the sales team published videos from their own pages, each saying the same core line: “ماتشتريش عقارات”. The repetition made the message feel bigger than a single ad asset.</p>
+
+          <div class="media-wall">
+            <div class="media-screen">
+              <div class="placeholder">
+                <div class="play">▶</div>
+                <h3>Campaign video wall</h3>
+                <p>Replace this featured frame with the first video or a montage from the statement phase. Keep the three supporting clips below separate.</p>
+              </div>
+            </div>
+            <div class="media-caption"><strong>The statement phase</strong><span>Featured campaign media slot</span></div>
+          </div>
+
+          <div class="media-grid">
+            <article class="media-card"><div class="thumb"></div><div class="meta"><b>Chairman statement</b><span>Video slot 01</span></div></article>
+            <article class="media-card"><div class="thumb"></div><div class="meta"><b>CEO statement</b><span>Video slot 02</span></div></article>
+            <article class="media-card"><div class="thumb"></div><div class="meta"><b>Sales team statements</b><span>Video slot 03</span></div></article>
+          </div>
+          <p>The result was not only reach. The message created discussion and confusion: why would a real estate company tell people not to buy real estate? That tension gave the campaign something most exhibition announcements struggle to create: a reason to wait for the answer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="story reveal-section" id="reveal">
+      <div class="shell section-grid">
+        <div class="section-label">
+          <div class="number">03 / REVEAL</div>
+          <h2>The answer had to make the first sentence <em>worth it.</em></h2>
+        </div>
+        <div class="section-copy">
+          <div class="eyebrow">The response video</div>
+          <p class="lead">Once curiosity was high enough, the campaign switched from disruption to explanation.</p>
+          <p>The response video answered the question behind the statement: the point was not that property had suddenly become a bad idea. The point was that customers were being asked to slow down, compare opportunities and understand what Pharaohs Expo was bringing together in one place.</p>
+
+          <div class="reveal-card">
+            <div class="reveal-top"><div class="eyebrow">Response video / final bridge</div><div class="eyebrow">Drop final video here</div></div>
+            <div class="response-line">Don't buy real estate <em>blindly.</em></div>
+            <div class="reveal-points">
+              <div class="reveal-point"><b>From shock to meaning</b><span>The first message created the question. The response delivered the context.</span></div>
+              <div class="reveal-point"><b>From one project to a market view</b><span>The Expo became the place to see multiple opportunities, compare and make a more informed decision.</span></div>
+            </div>
+          </div>
+          <p>The important creative move is the sequence: <strong>contradiction → curiosity → conversation → explanation → Expo.</strong> The reveal only works because the first statement earned the audience's attention.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="story outcome" id="outcome">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">04 / OUTCOME</div>
+            <h2 style="font-size:clamp(2.7rem,5vw,5.6rem);line-height:.92;letter-spacing:-.07em;margin-top:10px;max-width:520px">The campaign became the doorway to the <em style="font-family:var(--serif);font-weight:500">Expo.</em></h2>
+          </div>
+          <p style="max-width:640px;color:#646159;line-height:1.8;font-size:1rem">The “don't buy” statement was one part of a broader exhibition and sales operation. The campaign created the entrance: contradiction first, explanation second. The wider operation then carried the projects, offers, sales team and customer journey.</p>
+        </div>
+        <div class="outcome-grid">
+          <div class="outcome-stat">
+            <strong>200M+</strong>
+            <span>EGP reported in Expo sales across the broader operation</span>
+          </div>
+          <div class="outcome-context">
+            <h3>Attention was not the finish line.</h3>
+            <p>The campaign opened the door. The wider Expo operation had to convert that attention through its project mix, offers, sales process and on-ground execution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story role">
+      <div class="shell section-grid">
+        <div class="section-label">
+          <div class="number">05 / MY ROLE</div>
+          <h2>Not just the <em>post.</em></h2>
+        </div>
+        <div class="section-copy">
+          <p class="lead">My contribution covered the thinking behind the campaign and the work needed to move the idea into real market execution.</p>
+          <div class="role-list">
+            <div class="role-row"><div class="num">01</div><strong>Campaign concept</strong><span>Developing the “don't buy real estate” contradiction as the campaign entry point.</span></div>
+            <div class="role-row"><div class="num">02</div><strong>Creative direction</strong><span>Shaping the sequence, tone, hooks, statements, scripts and visual direction.</span></div>
+            <div class="role-row"><div class="num">03</div><strong>Online + offline</strong><span>Thinking across social content, on-ground activity and the wider Expo customer journey.</span></div>
+            <div class="role-row"><div class="num">04</div><strong>Customer + data thinking</strong><span>Using customer needs, data collection and CRM context to keep the campaign connected to actual sales activity.</span></div>
+            <div class="role-row"><div class="num">05</div><strong>Technical execution</strong><span>Supporting the registration website, sales interface and data systems around the campaign.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="close">
+      <div class="shell">
+        <div class="close-grid">
+          <div>
+            <div class="eyebrow" style="color:#8a8b84">End of case 01</div>
+            <h2>Next story,<br><em>different problem.</em></h2>
+          </div>
+          <div>
+            <p class="close-copy">This campaign started with a contradiction. The next case studies will show a different side of the work: startups, entrepreneurship, business development, customer systems and the projects where marketing had to meet the business.</p>
+            <a class="close-link" href="index.html#work">Back to selected work ↗</a>
+          </div>
+        </div>
+        <footer class="footer"><span>© 2026 Abdelrahman Gharby</span><span>Marketing × Business Development</span></footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    updateNav();
+    window.addEventListener('scroll', updateNav, {passive:true});
+  </script>
+</body>
+</html>
