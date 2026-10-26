@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Abdelrahman Gharby — Marketing and Business Development. Strategy, creative, campaigns, business thinking, CRM and technology." />
+<meta name="description" content="Abdelrahman Gharby — Marketing Specialist and Business Development professional working across strategy, creative campaigns, customer data, CRM and technology." />
 <title>Abdelrahman Gharby | Marketing × Business Development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,20 +132,35 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
   justify-content: center;
   cursor: pointer;
   background: #121310;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
 }
 
-.video-thumbnail {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.75;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+.video-thumbnail-fallback {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 78% 18%, rgba(104,121,93,.45), transparent 42%),
+              radial-gradient(ellipse at 18% 100%, rgba(200,117,69,.20), transparent 48%),
+              linear-gradient(145deg, #2d302a, #121310 68%);
+  transition: transform .4s ease, opacity .4s ease;
 }
-
-.video-facade:hover .video-thumbnail {
-  opacity: 0.95;
-  transform: scale(1.03);
+.video-label {
+  position: absolute;
+  left: 26px;
+  bottom: 25px;
+  z-index: 2;
+  display: grid;
+  gap: 7px;
+  max-width: calc(100% - 52px);
 }
+.video-label span { font: 500 .62rem var(--mono); letter-spacing: .15em; color: #c8d0c1; text-transform: uppercase; }
+.video-label strong { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: .95; letter-spacing: -.06em; color: var(--white); }
+.video-label small { font: 500 .6rem var(--mono); letter-spacing: .1em; color: #b8bab1; text-transform: uppercase; }
+.video-facade:hover .video-thumbnail-fallback { transform: scale(1.03); opacity: .95; }
+.video-facade:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 
 .play-btn {
   position: absolute;
@@ -248,6 +263,12 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
   /* Responsive fix for photo card */
   .photo-card{inset:0 0 110px 40px}
 }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
+
 @media(max-width:680px){
   .shell{width:min(calc(100% - 32px),var(--container))}.nav{padding:16px}.nav.scrolled{padding:11px 16px}.nav-link{display:none}.nav-right{gap:8px}
   .hero{padding:108px 0 24px}.hero-grid{gap:28px}h1{font-size:clamp(3.55rem,17vw,6rem)}
@@ -287,7 +308,7 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
         <div>
           <div class="kicker-row eyebrow">Marketing × Business Development</div>
           <h1>Marketing that gives people a <em>reason</em> to choose.</h1>
-          <p class="hero-deck">I work across strategy, branding, campaigns, creative execution, CRM, data and business development. The goal is simple: make the right people notice, understand and act.</p>
+          <p class="hero-deck">I connect marketing strategy, creative execution and commercial thinking — so the work does more than attract attention. It helps the right people understand the offer and take the next step.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#work">See the work <span>↓</span></a>
             <a class="btn btn-secondary" href="#about">A little about me <span>↗</span></a>
@@ -311,18 +332,16 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
   </section>
 
   <!-- MOVING STATS TICKER -->
-  <div class="stats-ticker">
+  <div class="stats-ticker" aria-label="Portfolio highlights">
     <div class="ticker-track">
-      <div class="ticker-item"><span class="ticker-num">+2</span><span class="ticker-label">Companies I Work With</span></div>
-      <div class="ticker-item"><span class="ticker-num">+2</span><span class="ticker-label">Years Experience</span></div>
-      <div class="ticker-item"><span class="ticker-num">12</span><span class="ticker-label">Projects Done</span></div>
-      <div class="ticker-item"><span class="ticker-num">4+</span><span class="ticker-label">Helped Brands</span></div>
-      <div class="ticker-item"><span class="ticker-num">3+</span><span class="ticker-label">People Recommended</span></div>
-      <div class="ticker-item"><span class="ticker-num">+2</span><span class="ticker-label">Companies I Work With</span></div>
-      <div class="ticker-item"><span class="ticker-num">+2</span><span class="ticker-label">Years Experience</span></div>
-      <div class="ticker-item"><span class="ticker-num">12</span><span class="ticker-label">Projects Done</span></div>
-      <div class="ticker-item"><span class="ticker-num">6+</span><span class="ticker-label">Helped Brands</span></div>
-      <div class="ticker-item"><span class="ticker-num">3+</span><span class="ticker-label">People Recommended</span></div>
+      <div class="ticker-item"><span class="ticker-num">2+</span><span class="ticker-label">Years Experience</span></div>
+      <div class="ticker-item"><span class="ticker-num">12</span><span class="ticker-label">Projects</span></div>
+      <div class="ticker-item"><span class="ticker-num">4+</span><span class="ticker-label">Brands Supported</span></div>
+      <div class="ticker-item"><span class="ticker-num">3+</span><span class="ticker-label">Recommendations</span></div>
+      <div class="ticker-item"><span class="ticker-num">2+</span><span class="ticker-label">Years Experience</span></div>
+      <div class="ticker-item"><span class="ticker-num">12</span><span class="ticker-label">Projects</span></div>
+      <div class="ticker-item"><span class="ticker-num">4+</span><span class="ticker-label">Brands Supported</span></div>
+      <div class="ticker-item"><span class="ticker-num">3+</span><span class="ticker-label">Recommendations</span></div>
     </div>
   </div>
 
@@ -331,9 +350,9 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
       <div class="work-intro">
         <div>
           <div class="eyebrow">01 / Selected work</div>
-          <h2>Let's get to the part that actually happened.</h2>
+          <h2>The work, the thinking, and what it led to.</h2>
         </div>
-        <p>Three different environments. One common thread: getting closer to the real problem, then turning it into something people can see, understand and act on.</p>
+        <p>Three different environments, connected by one approach: understand the real problem, build a relevant idea, and connect the work to what people need to do next.</p>
       </div>
 
       <article class="case-feature">
@@ -342,8 +361,8 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
             <div>
               <div class="case-top"><span class="case-tag">Pharaohs Development · Real Estate</span><span class="case-number">01</span></div>
               <div class="case-main-title">When a real estate company says <em>don't buy.</em></div>
-              <p class="case-hook"><strong>The hook:</strong> break the category rule. A real estate company told people "ماتشتريش عقارات" — then the wider Expo operation went on to report <strong>200M+ EGP</strong> in sales with a great success.</p>
-              <p class="case-hook" style="font-size:.85rem;margin-top:13px;color:#92948b">The campaign was built around contradiction, curiosity and the need to make the next message worth waiting for.</p>
+              <p class="case-hook"><strong>The hook:</strong> break the category rule. Pharaohs told people “ماتشتريش عقارات دلوقتي” — a deliberately unexpected opening that led into the Expo story. The wider Expo operation later reported <strong>200M+ EGP</strong> in sales.</p>
+              <p class="case-hook" style="font-size:.85rem;margin-top:13px;color:#92948b">The sequence moved from contradiction to curiosity, then to the explanation behind the Expo.</p>
             </div>
             <div class="case-foot">
               <div class="case-result"><strong>200M+ EGP</strong><span>Reported across the broader Expo sales operation</span></div>
@@ -354,11 +373,15 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
           <!-- FACEBOOK VIDEO EMBED (CLICK TO PLAY) -->
           <div class="media-placeholder" aria-label="Expo campaign video">
             <!-- Facade: Thumbnail + Play Button -->
-            <div class="video-facade" id="videoFacade" onclick="loadFacebookVideo()">
-              <!-- IMPORTANT: Replace 'expo-thumbnail.jpg' with your actual screenshot image -->
-              <img src="expo-thumbnail.jpg" alt="Expo Campaign Video Thumbnail" class="video-thumbnail">
-              <div class="play-btn"></div>
-            </div>
+            <button class="video-facade" id="videoFacade" type="button" aria-label="Play the Pharaohs Expo campaign video" onclick="loadFacebookVideo()">
+              <div class="video-thumbnail-fallback" aria-hidden="true"></div>
+              <div class="video-label" aria-hidden="true">
+                <span>Pharaohs Development</span>
+                <strong>Pharaohs Expo</strong>
+                <small>Campaign film · Select to play</small>
+              </div>
+              <span class="play-btn" aria-hidden="true"></span>
+            </button>
             <!-- The iframe container (empty until clicked) -->
             <div class="video-iframe-container" id="videoIframeContainer"></div>
           </div>
@@ -371,11 +394,11 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
           <div class="mini-top"><span class="case-tag">Creativa Hub Beni Suef · VentureX</span><span class="case-number">02</span></div>
           <div class="mini-main">
             <h3>Closer to founders. Closer to the real business.</h3>
-            <p>This was more than "program coordination." In three months, I worked inside a startup ecosystem: coordinating training sessions, interacting with founders, seeing teams work through business models, growth and funding, and watching startups move through the ecosystem.</p>
+            <p>For three months, I worked as a Program Coordinator in a startup ecosystem — coordinating sessions and activities while gaining direct exposure to founders working through business models, customer problems, growth and funding.</p>
             <div class="mini-media">
-              <div class="slot">Add my photo</div>
-              <div class="slot">Add training session</div>
-              <div class="slot slot-wide">Add founders / funded startups / Creativa building</div>
+              <div class="slot">Program coordination</div>
+              <div class="slot">Training sessions</div>
+              <div class="slot slot-wide">Creativa Hub · Startup ecosystem</div>
             </div>
           </div>
           <div class="mini-foot">
@@ -388,11 +411,11 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
           <div class="mini-top"><span class="case-tag">Entrepreneurship · Public-sector ecosystem</span><span class="case-number">03</span></div>
           <div class="mini-main">
             <h3>When building your own thing puts you in the right room.</h3>
-            <p>An entrepreneurship experience that connected a startup attempt with conversations and moments alongside Egypt's Prime Minister and Minister of Communications and Information Technology. The project did not continue. The experience did.</p>
+            <p>Building and presenting an early-stage idea gave me practical lessons in communication, commercial thinking and uncertainty, alongside opportunities to engage with senior public-sector stakeholders, including Egypt’s Prime Minister and Minister of Communications and Information Technology. The project did not continue; the learning did.</p>
             <div class="mini-media">
-              <div class="slot slot-wide">Add photo with Prime Minister</div>
-              <div class="slot">Add photo with Minister</div>
-              <div class="slot">Add project / event context</div>
+              <div class="slot slot-wide">Entrepreneurship presentation</div>
+              <div class="slot">Public-sector discussion</div>
+              <div class="slot">Project and event context</div>
             </div>
           </div>
           <div class="mini-foot">
@@ -424,11 +447,11 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
           <h2>Marketing mind. Technical backbone.</h2>
         </div>
         <div class="about-copy">
-          <p>I come from an ICT and software background, then moved deeper into marketing, business development, entrepreneurship and investment. That mix shaped how I think: the idea has to be creative, but it also has to make commercial sense and work in the real world.</p>
-          <p>My work has included real estate campaigns, street activation, digital marketing, branding, creative direction, customer and market data, CRM, landing pages and business-facing systems.</p>
+          <p>My foundation is in ICT and software, and my experience spans marketing, business development, entrepreneurship and investment. That mix shapes how I work: ideas need creativity, but they also need a clear audience, commercial logic and a practical path to execution.</p>
+          <p>I have worked across real estate campaigns, on-ground activation, digital marketing, branding, creative direction, customer and market data, CRM, landing pages and business-facing systems.</p>
           <div class="facts">
             <div class="fact"><div class="label">Education</div><div class="value">Bachelor of Technology in ICT · Software Track</div></div>
-            <div class="fact"><div class="label">Experience</div><div class="value">2+ years across marketing, entrepreneurship & investment</div></div>
+            <div class="fact"><div class="label">Experience</div><div class="value">2+ years across marketing, business development, entrepreneurship and investment</div></div>
             <div class="fact"><div class="label">Core</div><div class="value">Strategy · Branding · Campaigns · Creative</div></div>
             <div class="fact"><div class="label">Also</div><div class="value">CRM · Data · Web · Business Development</div></div>
           </div>
@@ -441,7 +464,7 @@ h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.08em}
     <div class="shell">
       <div class="contact-grid">
         <div><div class="eyebrow">04 / Next</div><h2>Let's make something <em>matter.</em></h2></div>
-        <div class="contact-right"><p>Have a brand problem, campaign, launch, product or growth challenge? Start with the problem. We can figure out the work from there.</p><a class="contact-link" href="mailto:abdelrahmansabre573@gmail.com">abdelrahmansabre573@gmail.com ↗</a></div>
+        <div class="contact-right"><p>Working on a brand, campaign, launch or growth challenge? Tell me what needs to change, and we can start with the business problem behind it.</p><a class="contact-link" href="mailto:abdelrahmansabre573@gmail.com">abdelrahmansabre573@gmail.com ↗</a></div>
       </div>
       <footer class="footer"><span>© 2026 Abdelrahman Gharby</span><span>Marketing × Business Development</span></footer>
     </div>
